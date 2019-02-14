@@ -1,0 +1,6 @@
+description: AlphaDrive Agent Configuration
+global: {}
+profiles:
+  default:
+    simulator: carla
+    launch_command: python -u tutorial.py
