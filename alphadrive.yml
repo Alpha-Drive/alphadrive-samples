@@ -5,3 +5,7 @@ profiles:
     simulator: carla
     launch_command: python -u tutorial.py
     map: /Game/Carla/Maps/Town05
+  manual:
+    simulator: carla
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u ../manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
