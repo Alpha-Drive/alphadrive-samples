@@ -3,6 +3,10 @@ global: {}
 profiles:
   default:
     simulator: carla
+    launch_command: python -u example_agent.py
+    map: /Game/Carla/Maps/Town05
+  tutorial:
+    simulator: carla
     launch_command: python -u tutorial.py
     map: /Game/Carla/Maps/Town05
   manual:
