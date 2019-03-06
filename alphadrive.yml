@@ -8,4 +8,4 @@ profiles:
   manual:
     simulator: carla
     map: /Game/Carla/Maps/Town05
-    launch_command: python -u ../manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+    launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
