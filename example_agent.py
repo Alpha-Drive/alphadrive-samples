@@ -33,10 +33,11 @@ def main():
 
     try:
         # First of all, we need to create the client that will send the requests
-        # to the simulator. 
+        # to the simulator.
         tries = 0
         world = None
         while tries < 5 and world is None:
+            tries += 1
             try:
                 client = carla.Client(os.getenv('SIM_HOST', 'localhost'), int(os.getenv('SIM_PORT', '2000')))
                 client.set_timeout(10.0)
