@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de
+# Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 #
 # This work is licensed under the terms of the MIT license.
@@ -11,7 +11,7 @@ import os
 import sys
 
 try:
-    sys.path.append(glob.glob('**/*%d.%d-%s.egg' % (
+    sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
@@ -33,19 +33,14 @@ def main():
 
     try:
         # First of all, we need to create the client that will send the requests
-        # to the simulator. 
-        tries = 0
-        world = None
-        while tries < 5 and world is None:
-            try:
-                client = carla.Client(os.getenv('SIM_HOST', 'localhost'), int(os.getenv('SIM_PORT', '2000')))
-                client.set_timeout(10.0)
-                # Once we have a client we can retrieve the world that is currently
-                # running.
-                world = client.get_world()
-            except Exception as e:
-                print('Connect failed. Trying again: {0}'.format(e))
-                world = None
+        # to the simulator. Here we'll assume the simulator is accepting
+        # requests in the localhost at port 2000.
+        client = carla.Client('localhost', 2000)
+        client.set_timeout(2.0)
+
+        # Once we have a client we can retrieve the world that is currently
+        # running.
+        world = client.get_world()
 
         # The world contains the list blueprints that we can use for adding new
         # actors into the simulation.
@@ -55,11 +50,12 @@ def main():
         # at random.
         bp = random.choice(blueprint_library.filter('vehicle'))
 
-        # A blueprint contains the list of attributes that define a vehicle
+        # A blueprint contains the list of attributes that define a vehicle's
         # instance, we can read them and modify some of them. For instance,
         # let's randomize its color.
-        color = random.choice(bp.get_attribute('color').recommended_values)
-        bp.set_attribute('color', color)
+        if bp.has_attribute('color'):
+            color = random.choice(bp.get_attribute('color').recommended_values)
+            bp.set_attribute('color', color)
 
         # Now we need to give an initial transform to the vehicle. We choose a
         # random transform from the list of recommended spawn points of the map.
@@ -104,7 +100,7 @@ def main():
         # vehicles.
         transform.location += carla.Location(x=40, y=-3.2)
         transform.rotation.yaw = -180.0
-        for x in range(0, 10):
+        for _ in range(0, 10):
             transform.location.x += 8.0
 
             bp = random.choice(blueprint_library.filter('vehicle'))

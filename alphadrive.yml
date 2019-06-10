@@ -13,6 +13,10 @@ profiles:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+  norender:
+    simulator: carla
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u no_rendering_mode.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   tiny_manual:
     simulator: carla
     map: /Game/Carla/Maps/Town05
