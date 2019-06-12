@@ -35,7 +35,7 @@ def main():
         # First of all, we need to create the client that will send the requests
         # to the simulator.
         session_id = os.getenv('SIM_SESSION_ID', '')
-        log_folder = os.getenv('ALPHA_LOG_FOLDER', '_out' + ('_' + session_id if session_id else ''))
+        log_folder = os.getenv('ALPHA_LOG_FOLDER', '_out/' + ('_' + session_id if session_id else ''))
 
         tries = 0
         world = None

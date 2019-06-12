@@ -5,6 +5,10 @@ profiles:
     simulator: carla
     launch_command: python -u example_agent.py
     map: /Game/Carla/Maps/Town05
+  headless:
+    simulator: carla
+    launch_command: python -u example_agent.py
+    map: /Game/Carla/Maps/Town05
   tutorial:
     simulator: carla
     launch_command: python -u tutorial.py
@@ -13,7 +17,7 @@ profiles:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
-  norender:
+  mapview:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: python -u no_rendering_mode.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
