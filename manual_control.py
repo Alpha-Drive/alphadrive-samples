@@ -743,6 +743,8 @@ class CameraManager(object):
             array = array[:, :, ::-1]
             self._surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
         if self._recording:
+            session_id = os.getenv('SIM_SESSION_ID', '')
+            log_folder = os.getenv('ALPHA_LOG_FOLDER', '_out/' + (session_id if session_id else ''))
             image.save_to_disk('_out/%08d' % image.frame_number)
 
 
