@@ -745,7 +745,7 @@ class CameraManager(object):
         if self._recording:
             session_id = os.getenv('SIM_SESSION_ID', '')
             log_folder = os.getenv('ALPHA_LOG_FOLDER', '_out/' + (session_id if session_id else ''))
-            image.save_to_disk('_out/%08d' % image.frame_number)
+            image.save_to_disk(log_folder + '/%08d' % image.frame_number)
 
 
 # ==============================================================================
