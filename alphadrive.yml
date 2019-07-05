@@ -17,12 +17,23 @@ profiles:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+  manual_win:
+    simulator: carla
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u manual_control.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
   mapview:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+  mapview_win:
+    simulator: carla
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u mapview.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
   tiny_manual:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=320x200
   
+
+
+    
