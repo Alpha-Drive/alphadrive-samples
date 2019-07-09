@@ -1,8 +1,13 @@
+* What is Alpha Drive
+
+Visit https://alphadrive.ai for more information.
+
 * Prerequisites
 
 - Docker CE
 - nodejs 10.0 or later
 - npm install -g @alphadrive/cli
+- register at https://app.alphadrive.ai
 
 * Support Matrix
 
