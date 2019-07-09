@@ -1,8 +1,48 @@
-* Windows Samples
-** Configuration
-- install conda
-- create environment
-   - windows: conda create --name ad-samples python=3.7 numpy scipy
-   - linux: conda create --name ad-samples python=3.5 numpy scipy
+* Prerequisites
+
+- Docker CE
+- nodejs 10.0 or later
+- npm install -g @alphadrive/cli
+
+* Support Matrix
+
+| Agent Execution Environment                    | Ubuntu | Windows 10 | MacOS |
+|------------------------------------------------+--------+------------+-------|
+| Remote Execution of Docker Containers With GPU | Yes    | Yes        | Yes   |
+| Local Execution of Docker Containers (No GPU)  | Yes    | Yes        | Yes   |
+| Local Execution of GPU-Enabled Containers      | Yes    | No         | No    |
+| Native agent with GPU                          | Yes    | Yes        | No    |
+
+* Running Samples on Windows 10
+- install conda - https://docs.conda.io/en/latest/miniconda.html
+- launch the conda command prompt
+- create environment: conda create --name ad-samples python=3.7 numpy scipy
 - conda activate ad-samples
-- run: win-post-install.bat or linux-post-install.sh
+- run: post-install.bat
+
+For docker profiles, run "docker pull alphadrive/samples:latest" on the command prompt.
+
+** Profiles
+All defined profiles run on Windows except docker_manual, docker_pwd, manual, and mapview. Use manual_win and mapview_win. The docker profiles require X11 and GPU support.
+
+* Running Samples on Ubuntu
+** Setup
+- install conda - https://docs.conda.io/en/latest/miniconda.html
+- launch a terminal
+- create environment: conda create --name ad-samples python=3.5 numpy scipy
+- conda activate ad-samples
+- run: post-install.sh
+
+For docker profiles, run "docker pull alphadrive/samples:latest" on the command prompt.
+
+** Profiles
+All defined profiles run on Ubuntu except manual_win and mapview_win
+
+* Running Samples on MacOS
+Run "docker pull alphadrive/samples:latest" on the command prompt.
+
+** Profiles
+Since there is no Carla client library available for MacOS at this time, only non-gpu docker container agents are supported.
+
+Available profiles:
+- docker
