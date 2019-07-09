@@ -1,6 +1,6 @@
 * What is Alpha Drive
 
-Visit https://alphadrive.ai for more information.
+Visit http://alphadrive.ai for more information.
 
 * Prerequisites
 
