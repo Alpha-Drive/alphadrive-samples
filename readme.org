@@ -1,9 +1,8 @@
 * Windows Samples
 ** Configuration
 - install conda
-- conda create --name ad-samples python=3.7 numpy scipy
+- create environment
+   - windows: conda create --name ad-samples python=3.7 numpy scipy
+   - linux: conda create --name ad-samples python=3.5 numpy scipy
 - conda activate ad-samples
-- run: win-post-install.bat
-- pip install pygame
-- easy_install win-api\carla-0.9.5-py3.7-win-amd64.egg
-pip
+- run: win-post-install.bat or linux-post-install.sh
