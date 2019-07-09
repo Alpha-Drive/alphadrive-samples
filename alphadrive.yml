@@ -20,6 +20,7 @@ profiles:
   manual_win:
     simulator: carla
     map: /Game/Carla/Maps/Town05
+    # windows commands require %-wrapped variables
     launch_command: python -u manual_control.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
   mapview:
     simulator: carla
@@ -44,6 +45,8 @@ profiles:
     simulator: carla
     map: /Game/Carla/Maps/Town05
     use_gpu: false
+    # this profile mounts the current directory inside the docker
+    # container at the provided path
     mount_pwd: /home/carla/user-agent
     agent_image: alphadrive/samples:latest
     log_path: _docker_out
@@ -51,15 +54,13 @@ profiles:
   docker_manual:
     simulator: carla
     map: /Game/Carla/Maps/Town05
+    # use_gpu can be boolean or the zero-indexed id of a gpu 
     use_gpu: true
     agent_image: alphadrive/samples:latest
     log_path: _docker_out
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
-  docker-gpu:
-    simulator: carla
-    map: /Game/Carla/Maps/Town05
-    launch_command: docker run --rm -e SIM_HOST=$SIM_HOST -e SIM_PORT=$SIM_PORT -e NVIDIA_VISIBLE_DEVICES=0 -e NVIDIA_VISIBLE_DEVICES=0 -e NVIDIA_DRIVER_CAPABILITIES=all -e ALPHA_LOG_FOLDER=/tmp/out -v ${PWD}/_out/$SIM_SESSION_ID:/tmp/out alphadrive/samples:latest example_agent.py
   docker-win:
+    # you can manually run docker on windows, but there is no gpu support
     simulator: carla
     map: /Game/Carla/Maps/Town05
     launch_command: docker run --rm -e SIM_HOST=%SIM_HOST% -e SIM_PORT=%SIM_PORT% -e ALPHA_LOG_FOLDER=/tmp/out -v //c/agent_out/%SIM_SESSION_ID%:/tmp/out alphadrive/samples:latest example_agent.py
