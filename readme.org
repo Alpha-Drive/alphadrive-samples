@@ -52,4 +52,15 @@ Run "docker pull alphadrive/samples:latest" on the command prompt.
 Since there is neither NVidia GPU support nor a Carla client library available for MacOS, only non-gpu docker container agents are supported.
 
 Available profiles:
-- docker
+- docker, docker_manual
+
+** Notes on docker_manual profile:
+The docker_manual profile runs the manual_control.py demo which visualizes the agent's sensors in a pygame window.
+
+A local installation of XQuartz is required with "Allow connections from network clients" set to YES. You can set this via the menu Preferences>Security or run the following command in the shell:
+
+#+begin_src
+defaults write org.macosforge.xquartz.X11.plist nolisten_tcp 0
+#+end_src
+
+The "use_gpu" flag is ignored since no GPU is available.
