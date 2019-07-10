@@ -4,10 +4,12 @@ Visit http://alphadrive.ai for more information.
 
 * Prerequisites
 
-- Docker CE
 - nodejs 10.0 or later
 - npm install -g @alphadrive/cli
 - register at https://app.alphadrive.ai
+
+* Optional
+- Docker CE (required for Mac)
 
 * Support Matrix
 
