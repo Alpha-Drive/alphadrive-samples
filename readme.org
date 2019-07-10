@@ -49,7 +49,7 @@ All defined profiles run on Ubuntu except manual_win and mapview_win
 Run "docker pull alphadrive/samples:latest" on the command prompt.
 
 ** Profiles
-Since there is no Carla client library available for MacOS at this time, only non-gpu docker container agents are supported.
+Since there is neither NVidia GPU support nor a Carla client library available for MacOS, only non-gpu docker container agents are supported.
 
 Available profiles:
 - docker
