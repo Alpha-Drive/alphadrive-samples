@@ -2,48 +2,49 @@ description: AlphaDrive Agent Configuration
 global: {}
 profiles:
   default:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     launch_command: python -u example_agent.py
     map: /Game/Carla/Maps/Town05
   headless:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     launch_command: python -u example_agent.py
     map: /Game/Carla/Maps/Town05
   tutorial:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     launch_command: python -u tutorial.py
     map: /Game/Carla/Maps/Town05
   manual:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   manual_win:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     # windows commands require %-wrapped variables
     launch_command: python -u manual_control.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
   mapview:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   mapview_win:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     launch_command: python -u mapview.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
   tiny_manual:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=320x200
   docker:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     use_gpu: false
     agent_image: alphadrive/samples:latest
+    mount_pwd: /home/carla/user-agent
     log_path: _docker_out
     launch_command: python -u example_agent.py
   docker_pwd:
-    simulator: carla
-    map: /Game/Carla/Maps/Town05
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town03
     use_gpu: false
     # this profile mounts the current directory inside the docker
     # container at the provided path
@@ -52,15 +53,15 @@ profiles:
     log_path: _docker_out
     launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   docker_manual:
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
-    # use_gpu can be boolean or the zero-indexed id of a gpu 
+    # use_gpu can be boolean or the zero-indexed id of a gpu
     use_gpu: true
     agent_image: alphadrive/samples:latest
     log_path: _docker_out
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   docker-win:
     # you can manually run docker on windows, but there is no gpu support
-    simulator: carla
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     launch_command: docker run --rm -e SIM_HOST=%SIM_HOST% -e SIM_PORT=%SIM_PORT% -e ALPHA_LOG_FOLDER=/tmp/out -v //c/agent_out/%SIM_SESSION_ID%:/tmp/out alphadrive/samples:latest example_agent.py

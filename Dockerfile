@@ -21,6 +21,7 @@ RUN ln -s PythonAPI/agents .
 
 RUN mkdir -p /home/carla/.local/lib/python3.5/site-packages
 
+RUN sudo easy_install /home/carla/PythonAPI/carla/dist/carla-0.9.5-py2.7-linux-x86_64.egg
 RUN sudo easy_install3 /home/carla/PythonAPI/carla/dist/carla-0.9.5-py3.5-linux-x86_64.egg
 WORKDIR /home/carla/user-agent
 
@@ -33,5 +34,4 @@ USER carla
 
 COPY manual_control.py example_agent.py mapview.py /home/carla/user-agent/
 
-ENTRYPOINT  ["python", "-u"]
-CMD ["example_agent.py"]
+CMD ["python", "-u", "example_agent.py"]
