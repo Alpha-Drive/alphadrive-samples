@@ -2,8 +2,7 @@ FROM carlasim/carla:0.9.5 as builder
 
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 USER root
-RUN apt-get update
-RUN apt-get -y install sudo python-setuptools python3 python3-pip python3-setuptools libpng16-16 libjpeg8 libjpeg-turbo8 libtiff5 iputils-ping curl unzip python-pygame fontconfig
+RUN apt-get update && apt-get -y install sudo python-setuptools python-pip python3 python3-pip python3-setuptools libpng16-16 libjpeg8 libjpeg-turbo8 libtiff5 iputils-ping curl unzip python-pygame fontconfig
 
 RUN mkdir /home/carla
 WORKDIR /home/carla
@@ -27,6 +26,7 @@ WORKDIR /home/carla/user-agent
 
 # Python dependencies for carla agents
 RUN pip3 install --user numpy pygame networkx  py_trees==0.8.3
+RUN pip install --user numpy==1.16.4 pygame networkx  py_trees==0.8.3
 
 USER root
 RUN chmod -R a+rwx /home/carla
