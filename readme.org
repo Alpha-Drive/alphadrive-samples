@@ -4,7 +4,7 @@ Visit http://alphadrive.ai for more information.
 
 * Prerequisites
 
-- nodejs 10.0 or later
+- nodejs 12.0 or later
 - npm install -g @alphadrive/cli
 - register at https://app.alphadrive.ai
 
@@ -30,7 +30,7 @@ Visit http://alphadrive.ai for more information.
 For docker profiles, run "docker pull alphadrive/samples:latest" on the command prompt.
 
 ** Profiles
-All defined profiles run on Windows except docker_manual, docker_pwd, manual, and mapview. Use manual_win and mapview_win. The docker profiles require X11 and GPU support.
+All defined profiles run on Windows except manual, mapview, and docker_pwd. Use win_manual and win_mapview for windows native UI using pygame. The docker-based visualization profiles require X11 and GPU support.
 
 * Running Samples on Ubuntu
 ** Setup
@@ -52,10 +52,10 @@ Run "docker pull alphadrive/samples:latest" on the command prompt.
 Since there is neither NVidia GPU support nor a Carla client library available for MacOS, only non-gpu docker container agents are supported.
 
 Available profiles:
-- docker, docker_manual
+- default, headless, manual, mapview, docker_pwd
 
 ** Notes on docker_manual profile:
-The docker_manual profile runs the manual_control.py demo which visualizes the agent's sensors in a pygame window.
+The manual profile runs the manual_control.py demo which visualizes the agent's sensors in a pygame window.
 
 A local installation of XQuartz is required with "Allow connections from network clients" set to YES. You can set this via the menu Preferences>Security or run the following command in the shell:
 

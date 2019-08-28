@@ -2,47 +2,29 @@ description: AlphaDrive Agent Configuration
 global: {}
 profiles:
   default:
-    simulator: carlasim/carla:0.9.5
-    launch_command: python -u example_agent.py
-    map: /Game/Carla/Maps/Town05
-  headless:
-    simulator: carlasim/carla:0.9.5
-    launch_command: python -u example_agent.py
-    map: /Game/Carla/Maps/Town05
-  tutorial:
-    simulator: carlasim/carla:0.9.5
-    launch_command: python -u tutorial.py
-    map: /Game/Carla/Maps/Town05
-  manual:
-    simulator: carlasim/carla:0.9.5
-    map: /Game/Carla/Maps/Town05
-    launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
-  manual_win:
-    simulator: carlasim/carla:0.9.5
-    map: /Game/Carla/Maps/Town05
-    # windows commands require %-wrapped variables
-    launch_command: python -u manual_control.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
-  mapview:
-    simulator: carlasim/carla:0.9.5
-    map: /Game/Carla/Maps/Town05
-    launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
-  mapview_win:
-    simulator: carlasim/carla:0.9.5
-    map: /Game/Carla/Maps/Town05
-    launch_command: python -u mapview.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
-  tiny_manual:
-    simulator: carlasim/carla:0.9.5
-    map: /Game/Carla/Maps/Town05
-    launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=320x200
-  docker:
+    # You can provide a profile named default and then simply run "alpha drive" to
+    # execute it.
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     use_gpu: false
     agent_image: alphadrive/samples:latest
-    mount_pwd: /home/carla/user-agent
-    log_path: _docker_out
+    log_path: _out
     launch_command: python -u example_agent.py
-  docker_pwd:
+  headless:
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town05
+    use_gpu: false
+    agent_image: alphadrive/samples:latest
+    log_path: _out
+    launch_command: python -u example_agent.py
+  manual:
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town05
+    # use_gpu can be boolean or the zero-indexed id of a gpu
+    use_gpu: true
+    agent_image: alphadrive/samples:latest
+    launch_command: python3 -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+  mapview:
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town03
     use_gpu: false
@@ -50,18 +32,56 @@ profiles:
     # container at the provided path
     mount_pwd: /home/carla/user-agent
     agent_image: alphadrive/samples:latest
-    log_path: _docker_out
     launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
-  docker_manual:
+  docker_pwd:
+    simulator: carlasim/carla:0.9.5q
+    map: /Game/Carla/Maps/Town03
+    use_gpu: false
+    # this profile mounts the current directory inside the docker
+    # container at the provided path so you can edit and test your
+    # code without rebuilding the docker container.
+    mount_pwd: /home/carla/user-agent
+    agent_image: alphadrive/samples:latest
+    log_path: _out
+    launch_command: python3 -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+  # The following profiles are appropriate for linux platforms where you have installed
+  # all of your prerequisites localy and are executing in the folder containing your
+  # source code.
+  native_headless:
+    simulator: carlasim/carla:0.9.5
+    launch_command: python -u example_agent.py
+    map: /Game/Carla/Maps/Town05
+  native_tutorial:
+    simulator: carlasim/carla:0.9.5
+    launch_command: python -u tutorial.py
+    map: /Game/Carla/Maps/Town05
+  native_manual:
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
-    # use_gpu can be boolean or the zero-indexed id of a gpu
-    use_gpu: true
-    agent_image: alphadrive/samples:latest
-    log_path: _docker_out
     launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
-  docker-win:
-    # you can manually run docker on windows, but there is no gpu support
+  native_mapview:
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
+  native_tiny_manual:
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=320x200
+  # The following profiles are appropriate for windows 10 systems with a conda python
+  # installation and docker is not used. This is useful for running agents on windows
+  # that use the GPU.
+  win_manual:
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town05
+    # windows commands require %-wrapped variables
+    launch_command: python -u manual_control.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
+  win_mapview:
+    simulator: carlasim/carla:0.9.5
+    map: /Game/Carla/Maps/Town05
+    launch_command: python -u mapview.py --host=%SIM_HOST% --port=%SIM_PORT% --res=640x480
+  win_docker:
+    # You can manually run docker on windows, but there is no gpu support. Note the syntax for
+    # providing environment variables to the command.
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     launch_command: docker run --rm -e SIM_HOST=%SIM_HOST% -e SIM_PORT=%SIM_PORT% -e ALPHA_LOG_FOLDER=/tmp/out -v //c/agent_out/%SIM_SESSION_ID%:/tmp/out alphadrive/samples:latest example_agent.py
