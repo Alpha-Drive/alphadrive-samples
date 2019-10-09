@@ -21,7 +21,7 @@ profiles:
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
     # gpus can be omitted,false, all, or the zero-indexed id of a gpu
-    gpus: all
+    gpus: false
     agent_image: alphadrive/samples:latest
     launch_command: python3 -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   mapview:
@@ -34,7 +34,7 @@ profiles:
     agent_image: alphadrive/samples:latest
     launch_command: python -u mapview.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   docker_pwd:
-    simulator: carlasim/carla:0.9.5q
+    simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town03
     gpus: false
     # this profile mounts the current directory inside the docker
