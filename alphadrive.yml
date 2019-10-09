@@ -6,28 +6,28 @@ profiles:
     # execute it.
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
-    use_gpu: false
+    gpus: false
     agent_image: alphadrive/samples:latest
     log_path: _out
     launch_command: python -u example_agent.py
   headless:
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
-    use_gpu: false
+    gpus: false
     agent_image: alphadrive/samples:latest
     log_path: _out
     launch_command: python -u example_agent.py
   manual:
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town05
-    # use_gpu can be boolean or the zero-indexed id of a gpu
-    use_gpu: true
+    # gpus can be omitted,false, all, or the zero-indexed id of a gpu
+    gpus: all
     agent_image: alphadrive/samples:latest
     launch_command: python3 -u manual_control.py --host=$SIM_HOST --port=$SIM_PORT --res=640x480
   mapview:
     simulator: carlasim/carla:0.9.5
     map: /Game/Carla/Maps/Town03
-    use_gpu: false
+    gpus: false
     # this profile mounts the current directory inside the docker
     # container at the provided path
     mount_pwd: /home/carla/user-agent
@@ -36,7 +36,7 @@ profiles:
   docker_pwd:
     simulator: carlasim/carla:0.9.5q
     map: /Game/Carla/Maps/Town03
-    use_gpu: false
+    gpus: false
     # this profile mounts the current directory inside the docker
     # container at the provided path so you can edit and test your
     # code without rebuilding the docker container.
