@@ -11,5 +11,5 @@ echo ============[0m
 echo [1mYou are now ready to run the alpha command on the
 echo python scripts in this folder.
 echo.
-echo e.g., try: alpha drive manual_win[0m
+echo e.g., try: alpha drive win_manual[0m
 echo.

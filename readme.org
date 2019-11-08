@@ -25,7 +25,7 @@ Visit http://alphadrive.ai for more information.
 - launch the conda command prompt
 - create environment: conda create --name ad-samples python=3.7 numpy scipy
 - conda activate ad-samples
-- run: post-install.bat
+- run: win-post-install.bat
 
 For docker profiles, run "docker pull alphadrive/samples:latest" on the command prompt.
 
